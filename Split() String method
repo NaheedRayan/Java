@@ -1,0 +1,327 @@
+Split() String method in Java with examples
+The string split() method breaks a given string around matches of the given regular expression.
+
+For Example:
+
+Input String: 016-78967
+Regular Expression: - 
+Output : {"016", "78967"}
+Following are the two variants of split() method in Java:
+
+1. Public String [ ] split ( String regex, int limit )
+
+Parameters:
+regex - a delimiting regular expression
+Limit - the result threshold
+
+Returns:
+An array of strings computed by splitting the given string.
+
+Throws:
+PatternSyntaxException - if the provided regular expression’s 
+                         syntax is invalid.  
+Limit parameter can have 3 values:
+
+
+
+
+limit > 0 : If this is the case then the pattern will be
+            applied at most limit-1 times, the resulting 
+            array’s length will not be more than n, and 
+            the resulting array’s last entry will contain
+            all input beyond the last matched pattern.
+limit < 0 : In this case, the pattern will be applied as
+            many times as possible, and the resulting 
+            array can be of any size.
+limit = 0 : In this case, the pattern will be applied as 
+            many times as possible, the resulting array can 
+            be of any size, and trailing empty strings will
+            be discarded.
+Here’s how it works:
+
+
+Let the string to be splitted be : geekss@for@geekss
+
+Regex       Limit             Result
+@           2         {“geekss”, ”for@geekss”}
+@           5         {“geekss”, ”for”, ”geekss”}    
+@           -2       {“geekss”, ”for”, ”geekss”}
+s           5        {“geek”, ”“, “@for@geek”, “”, “”}
+s           -2       {“geek”, ” “, “@for@geek”, “”, “”}
+s           0        {“geek”, ””, ”@for@geek”}
+
+Following are the Java example codes to demonstrate working of split()
+
+Example 1:
+
+// Java program to demonstrate working of split(regex, 
+// limit) with small limit. 
+public class GFG { 
+    public static void main(String args[]) 
+    { 
+        String str = "geekss@for@geekss"; 
+        String[] arrOfStr = str.split("@", 2); 
+  
+        for (String a : arrOfStr) 
+            System.out.println(a); 
+    } 
+} 
+Output:
+
+geekss
+for@geekss
+ 
+
+Example 2:
+
+// Java program to demonstrate working of split(regex, 
+// limit) with high limit. 
+public class GFG { 
+    public static void main(String args[]) 
+    { 
+        String str = "geekss@for@geekss"; 
+        String[] arrOfStr = str.split("@", 5); 
+  
+        for (String a : arrOfStr) 
+            System.out.println(a); 
+    } 
+} 
+Output:
+
+geekss
+for
+geekss
+ 
+Example 3:
+
+// Java program to demonstrate working of split(regex, 
+// limit) with negative limit. 
+public class GFG { 
+    public static void main(String args[]) 
+    { 
+        String str = "geekss@for@geekss"; 
+        String[] arrOfStr = str.split("@", -2); 
+  
+        for (String a : arrOfStr) 
+            System.out.println(a); 
+    } 
+} 
+Output:
+
+geekss
+for
+geekss
+ 
+
+Example 4:
+
+
+// Java program to demonstrate working of split(regex, 
+// limit) with high limit. 
+public class GFG { 
+    public static void main(String args[]) 
+    { 
+        String str = "geekss@for@geekss"; 
+        String[] arrOfStr = str.split("s", 5); 
+  
+        for (String a : arrOfStr) 
+            System.out.println(a); 
+    } 
+} 
+Output:
+
+geek
+
+@for@geek
+
+
+ 
+
+Example 5:
+
+// Java program to demonstrate working of split(regex, 
+// limit) with negative limit. 
+public class GFG { 
+    public static void main(String args[]) 
+    { 
+        String str = "geekss@for@geekss"; 
+        String[] arrOfStr = str.split("s", -2); 
+  
+        for (String a : arrOfStr) 
+            System.out.println(a); 
+    } 
+} 
+Output:
+
+geek
+
+@for@geek
+
+
+ 
+
+Example 6:
+// Java program to demonstrate working of split(regex, 
+// limit) with 0 limit. 
+public class GFG { 
+    public static void main(String args[]) 
+    { 
+        String str = "geekss@for@geekss"; 
+        String[] arrOfStr = str.split("s", 0); 
+  
+        for (String a : arrOfStr) 
+            System.out.println(a); 
+    } 
+} 
+Output:
+
+Geek
+
+@for@geek
+ 
+
+
+
+2. public String[] split(String regex)
+
+This variant of split method takes a regular expression as parameter, and breaks the given string 
+around matches of this regular expression regex. Here by default limit is 0.
+
+Parameters:
+regex - a delimiting regular expression
+
+
+Returns:
+An array of strings computed by splitting the given string.
+
+
+Throws:
+PatternSyntaxException - if the provided regular expression’s 
+                         syntax is invalid.  
+Here are some working example codes:
+
+Example 1:
+
+
+// Java program to demonstrate working of split() 
+public class GFG { 
+    public static void main(String args[]) 
+    { 
+        String str = "GeeksforGeeks:A Computer Science Portal"; 
+        String[] arrOfStr = str.split(":"); 
+  
+        for (String a : arrOfStr) 
+            System.out.println(a); 
+    } 
+} 
+Output:
+
+GeeksforGeeks
+A Computer Science Portal
+ 
+Example 2:
+
+// Java program to demonstrate working of split() 
+public class GFG { 
+    public static void main(String args[]) 
+    { 
+        String str = "GeeksforGeeksforStudents"; 
+        String[] arrOfStr = str.split("for"); 
+  
+        for (String a : arrOfStr) 
+            System.out.println(a); 
+    } 
+} 
+Output:
+
+Geeks
+Geeks
+Students
+It can be seen in the above example that the pattern/regular expression “for” is applied twice (because “for” is present two times in the string to be splitted)
+
+ 
+Example 3:
+
+
+// Java program to demonstrate working of split() 
+public class GFG { 
+    public static void main(String args[]) 
+    { 
+        String str = "Geeks for Geeks"; 
+        String[] arrOfStr = str.split(" "); 
+  
+        for (String a : arrOfStr) 
+            System.out.println(a); 
+    } 
+} 
+Output:
+
+Geeks
+for
+Geeks
+ 
+
+Example 4:
+
+
+// Java program to demonstrate working of split() 
+public class GFG { 
+    public static void main(String args[]) 
+    { 
+        String str = "Geekssss"; 
+        String[] arrOfStr = str.split("s"); 
+  
+        for (String a : arrOfStr) 
+            System.out.println(a); 
+    } 
+} 
+Output:
+
+Geek
+In the above example that trailing empty strings are not included in the resulting array arrOfStr.
+
+ 
+Example 5:
+
+// Java program to demonstrate working of split() 
+public class GFG { 
+    public static void main(String args[]) 
+    { 
+        String str = "GeeksforforGeeksfor   "; 
+        String[] arrOfStr = str.split("for"); 
+  
+        for (String a : arrOfStr) 
+            System.out.println(a); 
+    } 
+} 
+Output:
+
+geeks
+
+geeks
+
+In the above example, the trailing spaces (hence not empty string) in the end becomes a string in the resulting array arrOfStr.
+
+Example 6:
+
+// Java program to demonstrate working of split()  
+// using regular expressions 
+public class GFG { 
+    public static void main(String args[]) 
+    { 
+        String str = "word1, word2 word3@word4?word5.word6"; 
+        String[] arrOfStr = str.split("[, ?.@]+"); 
+  
+        for (String a : arrOfStr) 
+            System.out.println(a); 
+    } 
+} 
+word1
+word2
+word3
+word4
+word5
+word6
+
+
+--------------------------------The End----------------------------------------------
